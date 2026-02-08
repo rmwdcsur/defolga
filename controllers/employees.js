@@ -1,5 +1,5 @@
 const MongoDB = require("../config/database");
-const Employee = require("./models/Employees");
+const Employee = require("../models/employees.js");
 
 // Get all employees
 exports.getAllEmployees = async (req, res) => {
