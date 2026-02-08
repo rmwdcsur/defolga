@@ -1,0 +1,29 @@
+{
+  "name": "defolga",
+  "version": "1.0.0",
+  "description": "API for managing employees annual leave and time off",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rmwdcsur/defolga.git"
+  },
+  "license": "ISC",
+  "author": "Santiago Risso",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon run dev"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "mongoose": "^9.1.6",
+    "router": "^2.2.0",
+    "selfsigned": "^5.5.0",
+    "swagger": "^0.7.5",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11",
+    "swagger-autogen": "^2.23.7"
+  }
+}
