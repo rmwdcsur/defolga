@@ -1,5 +1,6 @@
 const MongoDB = require("../config/database");
 const Employee = require("../models/employees.js");
+const ObjectId = require("mongodb").ObjectId;
 
 // Get all employees
 exports.getAllEmployees = async (req, res) => {
@@ -63,6 +64,9 @@ exports.createEmployee = async (req, res) => {
 
 // Update an employee
 exports.updateEmployee = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    return res.status(400).json({ error: "Invalid contact ID" });
+  }
   try {
     const updatedEmployee = await Employee.findByIdAndUpdate(
       req.params.id,
@@ -79,6 +83,9 @@ exports.updateEmployee = async (req, res) => {
 
 // Delete an employee
 exports.deleteEmployee = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    return res.status(400).json({ error: "Invalid contact ID" });
+  }
   try {
     const deletedEmployee = await Employee.findByIdAndDelete(req.params.id);
     if (!deletedEmployee)

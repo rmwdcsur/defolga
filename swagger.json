@@ -63,6 +63,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "412": {
+            "description": "Precondition Failed"
           }
         }
       }
@@ -109,6 +112,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "412": {
+            "description": "Precondition Failed"
           }
         }
       },
@@ -125,6 +131,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
