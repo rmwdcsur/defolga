@@ -14,6 +14,9 @@ exports.getAllEmployees = async (req, res) => {
 
 // Get employee by ID
 exports.getEmployeeById = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    return res.status(400).json({ error: "Invalid contact ID" });
+  }
   try {
     const { id } = req.params;
     const mongoose = require("mongoose");
@@ -73,9 +76,10 @@ exports.updateEmployee = async (req, res) => {
       req.body,
       { new: true },
     );
-    if (!updatedEmployee)
+    if (!updatedEmployee) {
       return res.status(404).json({ message: "Employee not found" });
-    res.json(updatedEmployee);
+    }
+    res.status(204).json(updatedEmployee);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

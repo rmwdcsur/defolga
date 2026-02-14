@@ -10,7 +10,7 @@ Content-Type: application/json
 
  {
     "employeeId": 688,
-    "name": "",
+    "name": "Rafael",
     "lastName": "Miranda",
     "email": "rafael.miranda@comeri.org.uy",
     "mobileNumber": 9798798,
@@ -25,7 +25,7 @@ Content-Type: application/json
   {
     "employeeId": 10938,
     "name": "Santiago",
-    "lastName": "",
+    "lastName": "smith",
     "email": "santiago.risso@comeri.org.uy",
     "mobileNumber": 92198888,
     "position": "Senior Developer",
@@ -33,4 +33,4 @@ Content-Type: application/json
   }
 
 ### Delete an employee
-DELETE http://localhost:3000/api/employees/698817bca6b20444f182676a
+DELETE http://localhost:3000/api/employees/698f94376a5759e62056bdd
