@@ -22,7 +22,7 @@ router.get(
       { expiresIn: "1h" }, // Token expiration
     );
 
-    res.redirect(`http://localhost:3000/api-docs?token=${token}`);
+    res.redirect(`https://defolga.onrender.com/api-docs?token=${token}`);
   },
 );
 
