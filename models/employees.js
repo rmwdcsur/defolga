@@ -30,6 +30,10 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  hiredDate: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Employee = mongoose.model("Employee", employeeSchema);

@@ -1,4 +1,4 @@
-const MongoDB = require("../config/database");
+//const MongoDB = require("../config/database");
 const Employee = require("../models/employees.js");
 const ObjectId = require("mongodb").ObjectId;
 
@@ -15,7 +15,7 @@ exports.getAllEmployees = async (req, res) => {
 // Get employee by ID
 exports.getEmployeeById = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
-    return res.status(400).json({ error: "Invalid contact ID" });
+    return res.status(400).json({ error: "Invalid Object ID" });
   }
   try {
     const { id } = req.params;
@@ -46,6 +46,7 @@ exports.createEmployee = async (req, res) => {
     mobileNumber,
     position,
     department,
+    hiredDate,
   } = req.body;
   const newEmployee = new Employee({
     employeeId,
@@ -55,6 +56,7 @@ exports.createEmployee = async (req, res) => {
     mobileNumber,
     position,
     department,
+    hiredDate,
   });
 
   try {
@@ -68,7 +70,7 @@ exports.createEmployee = async (req, res) => {
 // Update an employee
 exports.updateEmployee = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
-    return res.status(400).json({ error: "Invalid contact ID" });
+    return res.status(400).json({ error: "Invalid Object ID" });
   }
   try {
     const updatedEmployee = await Employee.findByIdAndUpdate(
@@ -88,7 +90,7 @@ exports.updateEmployee = async (req, res) => {
 // Delete an employee
 exports.deleteEmployee = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
-    return res.status(400).json({ error: "Invalid contact ID" });
+    return res.status(400).json({ error: "Invalid Object ID" });
   }
   try {
     const deletedEmployee = await Employee.findByIdAndDelete(req.params.id);
