@@ -1,5 +1,6 @@
 ### Get all employess
 GET http://localhost:3000/api/employees
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzE3MjQ4MzUsImV4cCI6MTc3MTcyODQzNX0.TFlKbFapY-GUxun2ioxRKjgQwu17NaoeoXCgaZ1MC9Q
 
 ### Get employee by ID
 GET http://localhost:3000/api/employees/6988091bec231bfa6af0faa8

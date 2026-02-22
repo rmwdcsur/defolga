@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const employeesController = require("../controllers/employees");
 const validateEmployee = require("../middleware/validate");
+const authMiddleware = require("../auth/jwtAuth"); // Change this line
 
 // Get all employees
-router.get("/", employeesController.getAllEmployees);
+router.get("/", authMiddleware, employeesController.getAllEmployees);
 
 // Get employee by ID
 router.get("/:id", employeesController.getEmployeeById);

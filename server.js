@@ -2,6 +2,9 @@ const express = require("express");
 const connectDB = require("./config/database");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
+const passport = require("passport");
+const session = require("express-session");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,10 +25,25 @@ app.use((req, res, next) => {
 
 // Middleware
 app.use(express.json());
+app.use(passport.initialize());
+app.use(
+  session({
+    secret: "defolga2026",
+    resave: false,
+    saveUninitialized: true,
+  }),
+);
 
 // Routes
+// Serve the login page at the root URL
+const path = require("path");
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "login.html")); // Ensure the login.html is in the 'public' folder
+});
 app.use("/api/employees", require("./routes/employees"));
 app.use("/api/leaves", require("./routes/leaves"));
+// Add the authentication routes
+app.use("/auth", authRoutes);
 
 // Swagger
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
