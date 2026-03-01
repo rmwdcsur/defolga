@@ -23,6 +23,7 @@ router.get(
     );
 
     res.redirect(`https://defolga.onrender.com/api-docs?token=${token}`);
+    //res.redirect(`http://localhost:3000/api-docs?token=${token}`);
   },
 );
 

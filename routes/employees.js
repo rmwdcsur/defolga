@@ -8,15 +8,25 @@ const authMiddleware = require("../auth/jwtAuth"); // Change this line
 router.get("/", authMiddleware, employeesController.getAllEmployees);
 
 // Get employee by ID
-router.get("/:id", employeesController.getEmployeeById);
+router.get("/:id", authMiddleware, employeesController.getEmployeeById);
 
 // Create a new employee
-router.post("/", validateEmployee, employeesController.createEmployee);
+router.post(
+  "/",
+  authMiddleware,
+  validateEmployee,
+  employeesController.createEmployee,
+);
 
 // Update an employee
-router.put("/:id", validateEmployee, employeesController.updateEmployee);
+router.put(
+  "/:id",
+  authMiddleware,
+  validateEmployee,
+  employeesController.updateEmployee,
+);
 
 // Delete an employee
-router.delete("/:id", employeesController.deleteEmployee);
+router.delete("/:id", authMiddleware, employeesController.deleteEmployee);
 
 module.exports = router;

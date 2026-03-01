@@ -46,23 +46,23 @@ exports.addDaysUsed = async (req, res) => {
 };
 
 // Add compensatory hours used to annual leave
-exports.addCompansatoryHoursUsed = async (req, res) => {
+exports.addCompensatoryHoursUsed = async (req, res) => {
   try {
     const { id } = req.params;
-    const { compansatoryHoursUsed } = req.body;
+    const { compensatoryHoursUsed } = req.body;
     const annualLeave = await AnnualLeave.findOne({ _id: id });
     if (!annualLeave) {
       return res.status(404).json({ message: "Annual leave record not found" });
     }
     if (
-      annualLeave.compansatoryHoursUsed + compansatoryHoursUsed >
-      annualLeave.compansatoryHours
+      annualLeave.compensatoryHoursUsed + compensatoryHoursUsed >
+      annualLeave.compensatoryHours
     ) {
       return res
         .status(400)
         .json({ message: "Not enough compensatory hours remaining" });
     }
-    annualLeave.compansatoryHoursUsed += compansatoryHoursUsed;
+    annualLeave.compensatoryHoursUsed += compensatoryHoursUsed;
     await annualLeave.save();
     res.json(annualLeave);
   } catch (err) {
@@ -73,22 +73,20 @@ exports.addCompansatoryHoursUsed = async (req, res) => {
 // Create a new annual leave record
 exports.createAnnualLeave = async (req, res) => {
   try {
-    const {
-      _id,
-      year,
-      daysOff,
-      daysUsed,
-      compansatoryHours,
-      compansatoryHoursUsed,
-    } = req.body;
+    console.log("Creating annual leave record with data:", req.body);
+    console.log("Employee ID from params:", req.params.id);
+    const { year, daysOff } = req.body;
+    const _id = req.params.id;
+
     const newAnnualLeave = new AnnualLeave({
       _id,
       year,
       daysOff,
-      daysUsed,
-      compansatoryHours,
-      compansatoryHoursUsed,
+      daysUsed: 0,
+      compensatoryHours: 0,
+      compensatoryHoursUsed: 0,
     });
+
     const savedAnnualLeave = await newAnnualLeave.save();
     res.status(201).json(savedAnnualLeave);
   } catch (err) {
@@ -104,8 +102,8 @@ exports.updateAnnualLeave = async (req, res) => {
       year,
       daysOff,
       daysUsed,
-      compansatoryHours,
-      compansatoryHoursUsed,
+      compensatoryHours,
+      compensatoryHoursUsed,
     } = req.body;
     const annualLeave = await AnnualLeave.findOne({ _id: id });
     if (!annualLeave) {
@@ -115,14 +113,14 @@ exports.updateAnnualLeave = async (req, res) => {
     annualLeave.daysOff = daysOff !== undefined ? daysOff : annualLeave.daysOff;
     annualLeave.daysUsed =
       daysUsed !== undefined ? daysUsed : annualLeave.daysUsed;
-    annualLeave.compansatoryHours =
-      compansatoryHours !== undefined
-        ? compansatoryHours
-        : annualLeave.compansatoryHours;
-    annualLeave.compansatoryHoursUsed =
-      compansatoryHoursUsed !== undefined
-        ? compansatoryHoursUsed
-        : annualLeave.compansatoryHoursUsed;
+    annualLeave.compensatoryHours =
+      compensatoryHours !== undefined
+        ? compensatoryHours
+        : annualLeave.compensatoryHours;
+    annualLeave.compensatoryHoursUsed =
+      compensatoryHoursUsed !== undefined
+        ? compensatoryHoursUsed
+        : annualLeave.compensatoryHoursUsed;
     await annualLeave.save();
     res.json(annualLeave);
   } catch (err) {

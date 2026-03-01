@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const annualleaveSchema = new mongoose.Schema({
   _id: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
   year: {
@@ -17,15 +17,18 @@ const annualleaveSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  compansatoryHours: {
+  compensatoryHours: {
     type: Number,
     required: true,
   },
-  compansatoryHoursUsed: {
+  compensatoryHoursUsed: {
     type: Number,
     required: true,
   },
 });
+
+// Compound index on both _id and year to ensure uniqueness
+annualleaveSchema.index({ _id: 1, year: 1 }, { unique: true });
 
 const AnnualLeave = mongoose.model("AnnualLeave", annualleaveSchema);
 

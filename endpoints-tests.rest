@@ -3,13 +3,14 @@ GET http://localhost:3000/
 
 ### Get all employess
 GET http://localhost:3000/api/employees
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzE3MjYyMDYsImV4cCI6MTc3MTcyOTgwNn0.HZXvl9gJgNF9ROuXmYvp6wIYk3isafYWMaBvsnfFunY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzIzMzUwNzQsImV4cCI6MTc3MjMzODY3NH0.X0Y8KiGIIxnWwn8gSmkqomJ-VSd-5bfUKn4VMVQnAIE
 
 ### Get employee by ID
 GET http://localhost:3000/api/employees/6988091bec231bfa6af0faa8
 
 ### Create a new employee
 POST http://localhost:3000/api/employees
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzIzMzUwNzQsImV4cCI6MTc3MjMzODY3NH0.X0Y8KiGIIxnWwn8gSmkqomJ-VSd-5bfUKn4VMVQnAIE
 Content-Type: application/json
 
  {
@@ -39,7 +40,51 @@ Content-Type: application/json
 ### Delete an employee
 DELETE http://localhost:3000/api/employees/698f94376a5759e62056bdd
 
+### Get employee's annual leave records
+GET http://localhost:3000/api/leaves/69a3b92c8c427fa3d05d0aa1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzIzMzg3MjQsImV4cCI6MTc3MjM0MjMyNH0.3oGvskD_pdIE4aRjXSQ9eZPkQm09vtbdTc4bazvWWbE
+
+### Generate Annual Leave
+POST http://localhost:3000/api/leaves/69a3b92c8c427fa3d05d0aa1/generate
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzIzMzUwNzQsImV4cCI6MTc3MjMzODY3NH0.X0Y8KiGIIxnWwn8gSmkqomJ-VSd-5bfUKn4VMVQnAIE
+Content-Type: application/json
+
+ {    
+    "year": 2025,
+    "daysOff": 23
+  } 
+
+### Add days used to an annual leave record
+POST http://localhost:3000/api/leaves/69a3b92c8c427fa3d05d0aa1/add-days-used
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzIzMzg3MjQsImV4cCI6MTc3MjM0MjMyNH0.3oGvskD_pdIE4aRjXSQ9eZPkQm09vtbdTc4bazvWWbE
+Content-Type: application/json
+
+ {    
+    "daysUsed": 5
+  }
+
+### Update Annual Leave
+PUT http://localhost:3000/api/leaves/69a3b92c8c427fa3d05d0aa1/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzIzMzUwNzQsImV4cCI6MTc3MjMzODY3NH0.X0Y8KiGIIxnWwn8gSmkqomJ-VSd-5bfUKn4VMVQnAIE
+Content-Type: application/json
+
+ {    
+    "year": 2025,
+    "daysOff": 23,
+    "daysUsed": 0,
+    "compensatoryHours": 10,
+    "compensatoryHoursUsed": 0
+  } 
+
+### Add compensatory hours used to an annual leave record
+POST http://localhost:3000/api/leaves/69a3b92c8c427fa3d05d0aa1/add-compensatory-hours-used
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzIzMzg3MjQsImV4cCI6MTc3MjM0MjMyNH0.3oGvskD_pdIE4aRjXSQ9eZPkQm09vtbdTc4bazvWWbE
+Content-Type: application/json
+
+ {    
+    "compensatoryHoursUsed": 4
+  } 
 
 ### Get all Employees
 GET https://defolga.onrender.com/api/employees
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzE3MjcyMzcsImV4cCI6MTc3MTczMDgzN30.qLnszbQh8RWEW9wlie2xk8SHIQxa6DurdDOCgfoNrgk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzE3MzI0NDksImV4cCI6MTc3MTczNjA0OX0.UtxrCWTu1GuEH-TtrWw2ggsBH9UB4NEwJjAJwNHK5RE
